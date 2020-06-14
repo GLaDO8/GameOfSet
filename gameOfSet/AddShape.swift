@@ -15,31 +15,32 @@ struct addShape: ViewModifier{
     var size: CGSize
     var noOfShapes: Int
     
-    @ViewBuilder
     func body(content: Content) -> some View{
         ZStack{
             Group{
-                if shapeType == .rectangle{
+                if (shapeType == .rectangle){
                     RoundedRectangle(cornerRadius: radiusValue)
                         .fill(shapeColor)
+                        .opacity(shadingType)
                     RoundedRectangle(cornerRadius: radiusValue)
                         .stroke(lineWidth: strokeWidth)
                 }
-                else if shapeType == .oval{
+                else if (shapeType == .oval){
                     Ellipse()
                         .fill(shapeColor)
+                        .opacity(shadingType)
                     Ellipse()
                         .stroke(lineWidth: strokeWidth)
                 }
-                else if shapeType == .diamond{
+                else {
                     RoundedRectangle(cornerRadius: radiusValue)
                         .fill(shapeColor)
+                        .opacity(shadingType)
                     RoundedRectangle(cornerRadius: radiusValue)
                         .stroke(lineWidth: strokeWidth)
                 }
             }
-            .frame(width: (size.width)/2, height: (size.height)/2, alignment: .center)
-            .opacity(shadingType)
+            .frame(width: (size.width)/CGFloat(noOfShapes+1), height: (size.height)/CGFloat(noOfShapes+1), alignment: .center)
             .foregroundColor(shapeColor)
             content
         }

@@ -19,15 +19,15 @@ struct SetGameView: View {
                 Button(action: {
                     withAnimation(.easeInOut){
                         self.gameViewModel.newSetGame()
-                        self.gameViewModel.printAll()
                     }
                 }){
                     Text("New Game")
                 }
             }
-            Grid(self.gameViewModel.getCards()){ card in
+            Grid(self.gameViewModel.cardsArr){ card in
                 CardView(card: card).onTapGesture {
                     self.gameViewModel.chooseCard(card: card)
+//                    self.gameViewModel.printId(card: card)
                 }
             }
             .padding(10)
@@ -42,7 +42,6 @@ struct CardView: View{
         GeometryReader{ geometry in
             self.body(for: geometry.size)
         }
-       
     }
     
     func body(for size: CGSize) -> some View{
@@ -55,7 +54,6 @@ struct CardView: View{
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(lineWidth: 4)
                     .foregroundColor(Color.red)
-                    
             }
         }
         .padding(10)

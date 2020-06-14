@@ -11,10 +11,16 @@ import SwiftUI
 class SetGameVM:ObservableObject{
     private static var completeCardSet: Array<Card> = createCompleteSet()
    @Published private(set) var setModel = Model(cardsArray: SetGameVM.pickInitCards())
+    var cardsArr: Array<Card>{
+        setModel.cardsArray
+    }
     
     
     static func pickInitCards() -> Array<Card>{
         SetGameVM.completeCardSet.shuffle()
+        for card in 0..<SetGameVM.completeCardSet[0..<12].count{
+            print(SetGameVM.completeCardSet[card])
+        }
         return Array(SetGameVM.completeCardSet[0..<12])
     }
     static func createCompleteSet() -> Array<Card>{
@@ -32,16 +38,12 @@ class SetGameVM:ObservableObject{
                 }
             }
         }
-        print("Hello")
         return tempArray
     }
     
     //MARK: - Testing
-    func printAll(){
-        let test = SetGameVM.pickInitCards()
-        for card in 0..<test.count{
-            print("hello")
-        }
+    func printId(card: Card){
+        print(card.id)
     }
     
     //MARK: - Access to model details

@@ -51,7 +51,6 @@ struct Model{
                 cardsArray[selectedIndex].isSelected = false
             }
         }
-        print(card.isSelected)
     }
     
 }
