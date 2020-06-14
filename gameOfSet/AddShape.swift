@@ -17,31 +17,38 @@ struct addShape: ViewModifier{
     
     func body(content: Content) -> some View{
         ZStack{
-            Group{
-                if (shapeType == .rectangle){
-                    RoundedRectangle(cornerRadius: radiusValue)
-                        .fill(shapeColor)
-                        .opacity(shadingType)
-                    RoundedRectangle(cornerRadius: radiusValue)
-                        .stroke(lineWidth: strokeWidth)
-                }
-                else if (shapeType == .oval){
-                    Ellipse()
-                        .fill(shapeColor)
-                        .opacity(shadingType)
-                    Ellipse()
-                        .stroke(lineWidth: strokeWidth)
-                }
-                else {
-                    RoundedRectangle(cornerRadius: radiusValue)
-                        .fill(shapeColor)
-                        .opacity(shadingType)
-                    RoundedRectangle(cornerRadius: radiusValue)
-                        .stroke(lineWidth: strokeWidth)
+            VStack{
+                ForEach(1...noOfShapes, id: \.self){ _ in
+                    Group{
+                        ZStack{
+                            if (self.shapeType == .rectangle){
+                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                    .fill(self.shapeColor)
+                                    .opacity(self.shadingType)
+                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                    .stroke(lineWidth: self.strokeWidth)
+                            }
+                            else if (self.shapeType == .oval){
+                                Ellipse()
+                                    .fill(self.shapeColor)
+                                    .opacity(self.shadingType)
+                                Ellipse()
+                                    .stroke(lineWidth: self.strokeWidth)
+                            }
+                            else {
+                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                    .fill(self.shapeColor)
+                                    .opacity(self.shadingType)
+                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                    .stroke(lineWidth: self.strokeWidth)
+                            }
+                            
+                        }
+                    }
+                    .frame(width: (self.size.width)/2, height: (self.size.height)/5, alignment: .center)
+                    .foregroundColor(self.shapeColor)
                 }
             }
-            .frame(width: (size.width)/CGFloat(noOfShapes+1), height: (size.height)/CGFloat(noOfShapes+1), alignment: .center)
-            .foregroundColor(shapeColor)
             content
         }
     }
@@ -51,6 +58,6 @@ struct addShape: ViewModifier{
 
 //extension View{
 //    func addShape(shapeType: CardShape, shadingType: Double, shapeColor: Color, size: CGSize, noOfShapes: Int) -> some View{
-//        self.modifier(addShape(shapeType: shapeType, shadingType: shadingType, shapeColor: shapeColor, size: size, noOfShapes: noOfShapes))
+//        return self.modifier(addShape(shapeType: shapeType, shadingType: shadingType, shapeColor: shapeColor, size: size, noOfShapes: noOfShapes))
 //    }
 //}

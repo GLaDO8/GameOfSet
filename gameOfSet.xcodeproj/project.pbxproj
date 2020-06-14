@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		382AAEE424948BB400C7EF8A /* AddShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382AAEE324948BB400C7EF8A /* AddShape.swift */; };
-		3898C89E2496870A009DD41B /* Shapee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898C89D2496870A009DD41B /* Shapee.swift */; };
 		38BBD5AC24916AFD0080E5FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5AB24916AFD0080E5FD /* AppDelegate.swift */; };
 		38BBD5AE24916AFD0080E5FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5AD24916AFD0080E5FD /* SceneDelegate.swift */; };
 		38BBD5B024916AFD0080E5FD /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5AF24916AFD0080E5FD /* SetGameView.swift */; };
@@ -25,7 +24,6 @@
 
 /* Begin PBXFileReference section */
 		382AAEE324948BB400C7EF8A /* AddShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShape.swift; sourceTree = "<group>"; };
-		3898C89D2496870A009DD41B /* Shapee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapee.swift; sourceTree = "<group>"; };
 		38BBD5A824916AFD0080E5FD /* gameOfSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameOfSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BBD5AB24916AFD0080E5FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38BBD5AD24916AFD0080E5FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 				38BBD5CB2492388C0080E5FD /* GridLayout.swift */,
 				38BBD5AF24916AFD0080E5FD /* SetGameView.swift */,
 				382AAEE324948BB400C7EF8A /* AddShape.swift */,
-				3898C89D2496870A009DD41B /* Shapee.swift */,
 				38BBD5B124916B010080E5FD /* Assets.xcassets */,
 				38BBD5B624916B010080E5FD /* LaunchScreen.storyboard */,
 				38BBD5B924916B010080E5FD /* Info.plist */,
@@ -176,7 +173,6 @@
 				38BBD5CA2492387C0080E5FD /* Grid.swift in Sources */,
 				38BBD5AE24916AFD0080E5FD /* SceneDelegate.swift in Sources */,
 				382AAEE424948BB400C7EF8A /* AddShape.swift in Sources */,
-				3898C89E2496870A009DD41B /* Shapee.swift in Sources */,
 				38BBD5C6249228F10080E5FD /* SetViewModel.swift in Sources */,
 				38BBD5CC2492388C0080E5FD /* GridLayout.swift in Sources */,
 				38BBD5C024916B4D0080E5FD /* SetModel.swift in Sources */,
