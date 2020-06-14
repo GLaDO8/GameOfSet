@@ -8,14 +8,38 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Hello, World!")
+struct SetGameView: View {
+    var gameViewModel = SetGameVM()
+    var body: some View{
+        ZStack{
+            HStack{
+                Text("Score")
+                Text("Set Game")
+                    .font(.largeTitle)
+                Button(action: {
+                    self.gameViewModel.newSetGame()
+                }){
+                    Text("New Game")
+                }
+            }
+        }
+    }
+}
+
+struct vCard{
+    var card: Card
+    
+    var body: some View{
+        ZStack{
+            if !card.isSelected{
+                
+            }
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SetGameView()
     }
 }
