@@ -36,10 +36,10 @@ struct addShape: ViewModifier{
                                     .stroke(lineWidth: self.strokeWidth)
                             }
                             else {
-                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                Diamond()
                                     .fill(self.shapeColor)
                                     .opacity(self.shadingType)
-                                RoundedRectangle(cornerRadius: self.radiusValue)
+                                Diamond()
                                     .stroke(lineWidth: self.strokeWidth)
                             }
                             

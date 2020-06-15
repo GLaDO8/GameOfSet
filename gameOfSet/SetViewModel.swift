@@ -18,9 +18,6 @@ class SetGameVM:ObservableObject{
     
     static func pickInitCards() -> Array<Card>{
         SetGameVM.completeCardSet.shuffle()
-        for card in 0..<SetGameVM.completeCardSet[0..<12].count{
-            print(SetGameVM.completeCardSet[card])
-        }
         return Array(SetGameVM.completeCardSet[0..<12])
     }
     static func createCompleteSet() -> Array<Card>{

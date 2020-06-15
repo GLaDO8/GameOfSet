@@ -27,7 +27,6 @@ struct SetGameView: View {
             Grid(self.gameViewModel.cardsArr){ card in
                 CardView(card: card).onTapGesture {
                     self.gameViewModel.chooseCard(card: card)
-//                    self.gameViewModel.printId(card: card)
                 }
             }
             .padding(10)
