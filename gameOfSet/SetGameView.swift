@@ -48,21 +48,23 @@ struct CardView: View{
         withAnimation(.easeInOut){
             ZStack{
                 if !card.isASet{
-                    Group{
-                        if !card.isSelected{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 2)
-                                .foregroundColor(Color.blue)
-                        }else{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 4)
-                                .foregroundColor(Color.red)
-                        }
+                    if !card.isSelected{
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(Color.blue)
+                    }else{
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 4)
+                            .foregroundColor(Color.red)
                     }
-                    .padding(10)
-                    .modifier(addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes))
+                }else{
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 8)
+                        .foregroundColor(Color.purple)
                 }
             }
+            .padding(10)
+            .modifier(addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes))
         }
     }
 }
