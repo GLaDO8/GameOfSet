@@ -22,6 +22,7 @@ struct Model{
         let feat2: Bool = (card1.shapeType == card2.shapeType) && (card2.shapeType == card3.shapeType)
         let feat3: Bool = (card1.noOfShapes == card2.noOfShapes) && (card2.noOfShapes == card3.noOfShapes)
         let feat4: Bool = (card1.shadingType == card2.shadingType) && (card2.shadingType == card3.shadingType)
+//        print(feat1, feat2, feat3, feat4)
         return (feat1 || feat2 || feat3 || feat4)
     }
 
@@ -30,18 +31,18 @@ struct Model{
             if !card.isSelected{
                 if let firstIndex = indexOfFirstChosenCard{
                     if let secondIndex = indexOfSecondChosenCard{
-                        print(selectedIndex, firstIndex, secondIndex)
                         if checkIfCardsAreASet(card1: card, card2: cardsArray[firstIndex], card3: cardsArray[secondIndex]){
                             cardsArray[selectedIndex].isASet = true
                             cardsArray[firstIndex].isASet = true
                             cardsArray[secondIndex].isASet = true
+                            
                         }else{
                             cardsArray[firstIndex].isSelected = false
                             cardsArray[secondIndex].isSelected = false
-                            indexOfFirstChosenCard = nil
-                            indexOfSecondChosenCard = nil
-                            break primary
                         }
+                        indexOfFirstChosenCard = nil
+                        indexOfSecondChosenCard = nil
+                        break primary
                     }else{
                         indexOfSecondChosenCard = selectedIndex
                     }
