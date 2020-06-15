@@ -18,15 +18,15 @@ struct Model{
     }
     
     func checkIfCardsAreASet(card1: Card, card2: Card, card3: Card) -> Bool{
-        let feat1: Bool = (card1.color == card2.color) == (card1.color == card3.color)
-        let feat2: Bool = (card1.shapeType == card2.shapeType) == (card1.shapeType == card3.shapeType)
-        let feat3: Bool = (card1.noOfShapes == card2.noOfShapes) == (card1.noOfShapes == card3.noOfShapes)
-        let feat4: Bool = (card1.shadingType == card2.shadingType) == (card1.shadingType == card3.shadingType)
-        return (feat1 && !feat2 && !feat3 && !feat4) || (!feat1 && feat2 && !feat3 && !feat4) || (!feat1 && !feat2 && feat3 && !feat4) || (!feat1 && !feat2 && !feat3 && feat4)
+        let feat1: Bool = (card1.color == card2.color) && (card1.color == card3.color) && (card2.color == card3.color)
+        let feat2: Bool = (card1.shapeType == card2.shapeType) && (card1.shapeType == card3.shapeType) && (card2.shapeType == card3.shapeType)
+        let feat3: Bool = (card1.noOfShapes == card2.noOfShapes) && (card1.noOfShapes == card3.noOfShapes) && (card2.noOfShapes == card3.noOfShapes)
+        let feat4: Bool = (card1.shadingType == card2.shadingType) && (card1.shadingType == card3.shadingType) && (card2.shadingType == card3.shadingType)
+        return (feat1 || feat2 || feat3 || feat4)
     }
 
     mutating func chooseCard(card: Card){
-        if let selectedIndex = cardsArray.firstIndex(of: card) {
+        primary: if let selectedIndex = cardsArray.firstIndex(of: card), !card.isASet{
             if !card.isSelected{
                 if let firstIndex = indexOfFirstChosenCard{
                     if let secondIndex = indexOfSecondChosenCard{
@@ -39,6 +39,7 @@ struct Model{
                             cardsArray[secondIndex].isSelected = false
                             indexOfFirstChosenCard = nil
                             indexOfSecondChosenCard = nil
+                            break primary
                         }
                     }else{
                         indexOfSecondChosenCard = selectedIndex
