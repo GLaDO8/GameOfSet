@@ -72,17 +72,17 @@
 		38BBD5AA24916AFD0080E5FD /* gameOfSet */ = {
 			isa = PBXGroup;
 			children = (
-				38BBD5C12491FC240080E5FD /* Array+firstIndex.swift */,
 				38BBD5BF24916B4D0080E5FD /* SetModel.swift */,
-				38BBD5C724922B5F0080E5FD /* Card.swift */,
 				38BBD5C5249228F10080E5FD /* SetViewModel.swift */,
+				38BBD5AF24916AFD0080E5FD /* SetGameView.swift */,
+				382AAEE324948BB400C7EF8A /* AddShape.swift */,
+				38996EBE249743D100590701 /* Diamond.swift */,
+				38BBD5C724922B5F0080E5FD /* Card.swift */,
 				38BBD5AB24916AFD0080E5FD /* AppDelegate.swift */,
 				38BBD5AD24916AFD0080E5FD /* SceneDelegate.swift */,
 				38BBD5C92492387C0080E5FD /* Grid.swift */,
 				38BBD5CB2492388C0080E5FD /* GridLayout.swift */,
-				38BBD5AF24916AFD0080E5FD /* SetGameView.swift */,
-				38996EBE249743D100590701 /* Diamond.swift */,
-				382AAEE324948BB400C7EF8A /* AddShape.swift */,
+				38BBD5C12491FC240080E5FD /* Array+firstIndex.swift */,
 				38BBD5B124916B010080E5FD /* Assets.xcassets */,
 				38BBD5B624916B010080E5FD /* LaunchScreen.storyboard */,
 				38BBD5B924916B010080E5FD /* Info.plist */,

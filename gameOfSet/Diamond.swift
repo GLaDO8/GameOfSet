@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct Diamond: Shape{
-    
     func path(in rect: CGRect) -> Path {
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let startPoint = CGPoint(x: center.x, y: ((center.y)-(rect.height)/2))

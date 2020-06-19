@@ -9,23 +9,27 @@
 import SwiftUI
 
 struct Model{
+    private var completeCardsArray: Array<Card>
     var cardsArray: Array<Card>
-    var indexOfFirstChosenCard: Int?
-    var indexOfSecondChosenCard: Int?
+    private var cardsToBeDealt = Array<Card>(){
+        didSet{
+            dealtCardsIndex+=3
+        }
+    }
+    private var dealtCardsIndex = 11
+    private var indexOfFirstChosenCard: Int?
+    private var indexOfSecondChosenCard: Int?
     
-    init(cardsArray: Array<Card>){
+    init(cardsArray: Array<Card>, completeCardsArray: Array<Card>){
         self.cardsArray = cardsArray
+        self.completeCardsArray = completeCardsArray
     }
     
-    func boolFuncCheck(_ a: Bool, _ b: Bool, _ c: Bool) -> Bool{
-        return (a && b && c) || (!a && !b && !c)
-    }
     func checkIfCardsAreASet(card1: Card, card2: Card, card3: Card) -> Bool{
         let feat1 = boolFuncCheck((card1.color == card2.color), (card2.color == card3.color), (card1.color == card3.color))
         let feat2 = boolFuncCheck((card1.shapeType == card2.shapeType), (card2.shapeType == card3.shapeType), (card1.shapeType == card3.shapeType))
         let feat3 = boolFuncCheck((card1.noOfShapes == card2.noOfShapes), (card2.noOfShapes == card3.noOfShapes), (card1.noOfShapes == card3.noOfShapes))
         let feat4 = boolFuncCheck((card1.shadingType == card2.shadingType), (card2.shadingType == card3.shadingType), (card1.shadingType == card3.shadingType))
-
         print(feat1, feat2, feat3, feat4)
         print("card1 details: \(card1.color), \(card1.shapeType), \(card1.noOfShapes), \(card1.shadingType)")
         print("card2 details: \(card2.color), \(card2.shapeType), \(card2.noOfShapes), \(card2.shadingType)")
@@ -36,6 +40,7 @@ struct Model{
 
     mutating func chooseCard(card: Card){
         primary: if let selectedIndex = cardsArray.firstIndex(of: card), !card.isASet{
+            //CARD IS SELECTED
             if !card.isSelected{
                 if let firstIndex = indexOfFirstChosenCard{
                     if let secondIndex = indexOfSecondChosenCard{
@@ -43,6 +48,15 @@ struct Model{
                             cardsArray[selectedIndex].isASet = true
                             cardsArray[firstIndex].isASet = true
                             cardsArray[secondIndex].isASet = true
+//                            dealMoreCards()
+//                            if let toBeDealt = cardsToBeDealt{
+//                                cardsArray.remove(at: selectedIndex)
+//                                cardsArray.remove(at: firstIndex)
+//                                cardsArray.remove(at: secondIndex)
+//                                cardsArray.insert(toBeDealt[0], at: selectedIndex)
+//                                cardsArray.insert(toBeDealt[1], at: firstIndex)
+//                                cardsArray.insert(toBeDealt[2], at: secondIndex)
+//                            }
                         }else{
                             cardsArray[firstIndex].isSelected = false
                             cardsArray[secondIndex].isSelected = false
@@ -57,11 +71,30 @@ struct Model{
                     indexOfFirstChosenCard = selectedIndex
                 }
                 cardsArray[selectedIndex].isSelected = true
+            //CARD IS DESELECTED
             }else{
                 cardsArray[selectedIndex].isSelected = false
+                if indexOfFirstChosenCard != nil{
+                    if indexOfSecondChosenCard != nil{
+                        indexOfSecondChosenCard = nil
+                    }
+                    indexOfFirstChosenCard = nil
+                }
             }
         }
     }
     
+    mutating func dealMoreCards(){
+        cardsToBeDealt = Array(completeCardsArray[dealtCardsIndex+1...dealtCardsIndex+3])
+    }
+    
+    //MARK: - helper functions
+    func boolFuncCheck(_ a: Bool, _ b: Bool, _ c: Bool) -> Bool{
+        return (a && b && c) || (!a && !b && !c)
+    }
+    
+    func isDeckEmpty() -> Bool{
+        return (dealtCardsIndex == 80)
+    }
 }
 
