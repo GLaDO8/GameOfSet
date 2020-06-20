@@ -11,7 +11,7 @@ import SwiftUI
 struct Model{
     private var completeCardsArray: Array<Card>
     var cardsArray: Array<Card>
-    private var cardsToBeDealt = Array<Card>(){
+    private var cardsToBeDealt: Array<Card>! = Array<Card>(){
         didSet{
             dealtCardsIndex+=3
         }
@@ -30,7 +30,7 @@ struct Model{
         let feat2 = boolFuncCheck((card1.shapeType == card2.shapeType), (card2.shapeType == card3.shapeType), (card1.shapeType == card3.shapeType))
         let feat3 = boolFuncCheck((card1.noOfShapes == card2.noOfShapes), (card2.noOfShapes == card3.noOfShapes), (card1.noOfShapes == card3.noOfShapes))
         let feat4 = boolFuncCheck((card1.shadingType == card2.shadingType), (card2.shadingType == card3.shadingType), (card1.shadingType == card3.shadingType))
-//        printSetDetails(card1: card1, card2: card2, card3: card3, feat1: feat1, feat2:feat2, feat3: feat3, feat4: feat4)
+        printSetDetails(card1: card1, card2: card2, card3: card3, feat1: feat1, feat2:feat2, feat3: feat3, feat4: feat4)
         return (feat1 && feat2 && feat3 && feat4)
     }
 
@@ -44,14 +44,14 @@ struct Model{
                             cardsArray[selectedIndex].isASet = true
                             cardsArray[firstIndex].isASet = true
                             cardsArray[secondIndex].isASet = true
-//                            dealMoreCards()
+                            dealMoreCards()
 //                            if let toBeDealt = cardsToBeDealt{
 //                                cardsArray.remove(at: selectedIndex)
 //                                cardsArray.remove(at: firstIndex)
 //                                cardsArray.remove(at: secondIndex)
-//                                cardsArray.insert(toBeDealt[0], at: selectedIndex)
-//                                cardsArray.insert(toBeDealt[1], at: firstIndex)
-//                                cardsArray.insert(toBeDealt[2], at: secondIndex)
+////                                cardsArray.insert(toBeDealt[0], at: selectedIndex)
+////                                cardsArray.insert(toBeDealt[1], at: firstIndex)
+////                                cardsArray.insert(toBeDealt[2], at: secondIndex)
 //                            }
                         }else{
                             cardsArray[firstIndex].isSelected = false

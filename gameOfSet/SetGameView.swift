@@ -49,24 +49,28 @@ struct CardView: View{
         withAnimation(.easeInOut){
             ZStack{
                 if !card.isASet{
-                    if !card.isSelected{
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 2)
-                            .foregroundColor(Color.blue)
-                    }else{
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 4)
-                            .foregroundColor(Color.red)
+                    Group{
+                        if !card.isSelected{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(lineWidth: 2)
+                                .foregroundColor(Color.blue)
+                        }else{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(lineWidth: 4)
+                                .foregroundColor(Color.red)
+                        }
                     }
-                }else{
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 8)
-                        .foregroundColor(Color.purple)
+                    .padding(10)
+                    .addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes)
+                    .transition(AnyTransition.offset(randomLocationGenerator()))
+                    .animation(.default)
                 }
             }
-            .padding(10)
-            .addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes)
         }
+    }
+    
+    func randomLocationGenerator() -> CGSize{
+        return CGSize(width: Int.random(in: -1000...1000), height: Int.random(in: -1000...2000))
     }
 }
 

@@ -11,7 +11,6 @@ import SwiftUI
 class SetGameVM:ObservableObject{
     //MARK: - Properties
     private static var completeCardSet: Array<Model.Card> = createCompleteSet()
-    private var dealtCardsIndex = 11
     @Published private(set) var setModel = Model(cardsArray: SetGameVM.pickInitCards(), completeCardsArray: SetGameVM.completeCardSet)
     var cardsArr: Array<Model.Card>{
         setModel.cardsArray
@@ -20,7 +19,7 @@ class SetGameVM:ObservableObject{
 
     //MARK: - Functions
     static func pickInitCards() -> Array<Model.Card>{
-        SetGameVM.completeCardSet.shuffle()
+//        SetGameVM.completeCardSet.shuffle()
         return Array(SetGameVM.completeCardSet[0..<12])
     }
     static func createCompleteSet() -> Array<Model.Card>{
