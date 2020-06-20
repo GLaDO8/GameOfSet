@@ -22,27 +22,14 @@ struct AddShape: ViewModifier{
                     Group{
                         ZStack{
                             if (self.shapeType == .rectangle){
-                                RoundedRectangle(cornerRadius: self.radiusValue)
-                                    .fill(self.shapeColor)
-                                    .opacity(self.shadingType)
-                                RoundedRectangle(cornerRadius: self.radiusValue)
-                                    .stroke(lineWidth: self.strokeWidth)
+                                self.shapeMaker(type: RoundedRectangle(cornerRadius: self.radiusValue), fillType: self.shapeColor, shadingType: self.shadingType)
                             }
                             else if (self.shapeType == .oval){
-                                Ellipse()
-                                    .fill(self.shapeColor)
-                                    .opacity(self.shadingType)
-                                Ellipse()
-                                    .stroke(lineWidth: self.strokeWidth)
+                               self.shapeMaker(type: Ellipse(), fillType: self.shapeColor, shadingType: self.shadingType)
                             }
                             else {
-                                Diamond()
-                                    .fill(self.shapeColor)
-                                    .opacity(self.shadingType)
-                                Diamond()
-                                    .stroke(lineWidth: self.strokeWidth)
+                                self.shapeMaker(type: Diamond(), fillType: self.shapeColor, shadingType: self.shadingType)
                             }
-                            
                         }
                     }
                     .frame(width: (self.size.width)/2, height: (self.size.height)/5, alignment: .center)
@@ -52,6 +39,18 @@ struct AddShape: ViewModifier{
             content
         }
     }
+    
+    func shapeMaker<T: Shape>(type shape: T, fillType fill: Color, shadingType shade: Double) -> some View{
+        return
+            Group{
+                shape
+                    .fill(fill)
+                    .opacity(shade)
+                shape
+                    .stroke(lineWidth: self.strokeWidth)
+        }
+    }
+    
     let strokeWidth: CGFloat = 2
     let radiusValue: CGFloat = 8
 }
