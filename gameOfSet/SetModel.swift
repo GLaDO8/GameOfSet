@@ -101,5 +101,20 @@ struct Model{
         print()
     }
     
+    enum CardShape{
+        case oval
+        case diamond
+        case rectangle
+    }
+    struct Card: Identifiable{
+        var id = UUID()
+        var color: Color
+        var shapeType: CardShape
+        var noOfShapes: Int
+        var shadingType: Double
+        var isSelected: Bool = false
+        var isASet: Bool = false
+    }
+    
 }
 

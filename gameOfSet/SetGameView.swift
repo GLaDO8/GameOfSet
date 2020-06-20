@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SetGameView: View {
     @ObservedObject var gameViewModel:SetGameVM
+    
     var body: some View{
         VStack{
             HStack{
@@ -35,7 +36,7 @@ struct SetGameView: View {
 }
 
 struct CardView: View{
-    var card: Card
+    var card: Model.Card
     
     var body: some View{
         GeometryReader{ geometry in
@@ -64,7 +65,7 @@ struct CardView: View{
                 }
             }
             .padding(10)
-            .modifier(addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes))
+            .addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes)
         }
     }
 }

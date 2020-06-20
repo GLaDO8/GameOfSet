@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct addShape: ViewModifier{
-    var shapeType: CardShape
+struct AddShape: ViewModifier{
+    var shapeType: Model.CardShape
     var shadingType: Double
     var shapeColor: Color
     var size: CGSize
@@ -56,8 +56,8 @@ struct addShape: ViewModifier{
     let radiusValue: CGFloat = 8
 }
 
-//extension View{
-//    func addShape(shapeType: CardShape, shadingType: Double, shapeColor: Color, size: CGSize, noOfShapes: Int) -> some View{
-//        return self.modifier(addShape(shapeType: shapeType, shadingType: shadingType, shapeColor: shapeColor, size: size, noOfShapes: noOfShapes))
-//    }
-//}
+extension View{
+    func addShape(shapeType: Model.CardShape, shadingType: Double, shapeColor: Color, size: CGSize, noOfShapes: Int) -> some View{
+        return self.modifier(AddShape(shapeType: shapeType, shadingType: shadingType, shapeColor: shapeColor, size: size, noOfShapes: noOfShapes))
+    }
+}
