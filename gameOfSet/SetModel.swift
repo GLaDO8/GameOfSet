@@ -30,11 +30,7 @@ struct Model{
         let feat2 = boolFuncCheck((card1.shapeType == card2.shapeType), (card2.shapeType == card3.shapeType), (card1.shapeType == card3.shapeType))
         let feat3 = boolFuncCheck((card1.noOfShapes == card2.noOfShapes), (card2.noOfShapes == card3.noOfShapes), (card1.noOfShapes == card3.noOfShapes))
         let feat4 = boolFuncCheck((card1.shadingType == card2.shadingType), (card2.shadingType == card3.shadingType), (card1.shadingType == card3.shadingType))
-        print(feat1, feat2, feat3, feat4)
-        print("card1 details: \(card1.color), \(card1.shapeType), \(card1.noOfShapes), \(card1.shadingType)")
-        print("card2 details: \(card2.color), \(card2.shapeType), \(card2.noOfShapes), \(card2.shadingType)")
-        print("card3 details: \(card3.color), \(card3.shapeType), \(card3.noOfShapes), \(card3.shadingType)")
-        print()
+//        printSetDetails(card1: card1, card2: card2, card3: card3, feat1: feat1, feat2:feat2, feat3: feat3, feat4: feat4)
         return (feat1 && feat2 && feat3 && feat4)
     }
 
@@ -96,5 +92,14 @@ struct Model{
     func isDeckEmpty() -> Bool{
         return (dealtCardsIndex == 80)
     }
+    
+    func printSetDetails(card1: Card, card2: Card, card3: Card, feat1: Bool, feat2: Bool, feat3: Bool, feat4: Bool){
+        print(feat1, feat2, feat3, feat4)
+        print("card1 details: \(card1.color), \(card1.shapeType), \(card1.noOfShapes), \(card1.shadingType)")
+        print("card2 details: \(card2.color), \(card2.shapeType), \(card2.noOfShapes), \(card2.shadingType)")
+        print("card3 details: \(card3.color), \(card3.shapeType), \(card3.noOfShapes), \(card3.shadingType)")
+        print()
+    }
+    
 }
 
