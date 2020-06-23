@@ -22,13 +22,13 @@ struct AddShape: ViewModifier{
                     Group{
                         ZStack{
                             if (self.shapeType == .rectangle){
-                                self.shapeMaker(type: RoundedRectangle(cornerRadius: self.radiusValue), fillType: self.shapeColor, shadingType: self.shadingType)
+                                self.shapeMaker(type: RoundedRectangle(cornerRadius: self.radiusValue))
                             }
                             else if (self.shapeType == .oval){
-                               self.shapeMaker(type: Ellipse(), fillType: self.shapeColor, shadingType: self.shadingType)
+                               self.shapeMaker(type: Ellipse())
                             }
                             else {
-                                self.shapeMaker(type: Diamond(), fillType: self.shapeColor, shadingType: self.shadingType)
+                                self.shapeMaker(type: Diamond())
                             }
                         }
                     }
@@ -40,12 +40,12 @@ struct AddShape: ViewModifier{
         }
     }
     
-    func shapeMaker<T: Shape>(type shape: T, fillType fill: Color, shadingType shade: Double) -> some View{
+    func shapeMaker<T: Shape>(type shape: T) -> some View{
         return
             Group{
                 shape
-                    .fill(fill)
-                    .opacity(shade)
+                    .fill(self.shapeColor)
+                    .opacity(self.shadingType)
                 shape
                     .stroke(lineWidth: self.strokeWidth)
         }
