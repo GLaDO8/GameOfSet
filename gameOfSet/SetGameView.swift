@@ -26,12 +26,28 @@ struct SetGameView: View {
                 }
             }
             Grid(self.gameViewModel.cardsArr){ card in
-                CardView(card: card).onTapGesture {
-                    self.gameViewModel.chooseCard(card: card)
+                CardView(card: card)
+                    .transition(AnyTransition.offset(self.randomLocationGenerator()))
+                    .animation(.default)
+                    .onTapGesture {
+                        withAnimation(.easeInOut){
+                            self.gameViewModel.chooseCard(card: card)
+                        }
                 }
             }
             .padding(10)
+            if !self.gameViewModel.isDeckEmpty(){
+                Button(action: {
+                    // TODO: write function for this
+                }){
+                    Text("Deal More Cards")
+                }
+            }
         }
+    }
+    
+    func randomLocationGenerator() -> CGSize{
+        return CGSize(width: Int.random(in: -1000...1000), height: Int.random(in: -1000...2000))
     }
 }
 
@@ -48,29 +64,21 @@ struct CardView: View{
     func body(for size: CGSize) -> some View{
         withAnimation(.easeInOut){
             ZStack{
-                if !card.isASet{
-                    Group{
-                        if !card.isSelected{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 2)
-                                .foregroundColor(Color.blue)
-                        }else{
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(lineWidth: 4)
-                                .foregroundColor(Color.red)
-                        }
+                Group{
+                    if !card.isSelected{
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(Color.blue)
+                    }else{
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 4)
+                            .foregroundColor(Color.red)
                     }
-                    .padding(10)
-                    .addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes)
-                    .transition(AnyTransition.offset(randomLocationGenerator()))
-                    .animation(.default)
                 }
+                .padding(10)
+                .addShape(shapeType: card.shapeType, shadingType: card.shadingType, shapeColor: card.color, size: size, noOfShapes: card.noOfShapes)
             }
         }
-    }
-    
-    func randomLocationGenerator() -> CGSize{
-        return CGSize(width: Int.random(in: -1000...1000), height: Int.random(in: -1000...2000))
     }
 }
 
@@ -79,3 +87,18 @@ struct ContentView_Previews: PreviewProvider {
         SetGameView(gameViewModel: SetGameVM())
     }
 }
+
+//
+//Grid(
+//    self.cardSetGame.gameHasStarted ? self.cardSetGame.dealtCards() : self.cardSetGame.emptyCardsArray()
+//) { card in
+//    GeometryReader { geometry in
+//        CardView(card: card, model: self.cardSetGame).position(x: geometry.size.width/2, y: geometry.size.height/2)
+//    }
+//    .transition(.offset(self.randomOffset))
+//}
+//.onAppear {
+//    withAnimation(.easeOut(duration: self.animationDuration))                {
+//        self.cardSetGame.resetGame()
+//    }
+//}

@@ -26,10 +26,10 @@ struct Model{
     }
     
     func checkIfCardsAreASet(card1: Card, card2: Card, card3: Card) -> Bool{
-        let feat1 = boolFuncCheck((card1.color == card2.color), (card2.color == card3.color), (card1.color == card3.color))
-        let feat2 = boolFuncCheck((card1.shapeType == card2.shapeType), (card2.shapeType == card3.shapeType), (card1.shapeType == card3.shapeType))
-        let feat3 = boolFuncCheck((card1.noOfShapes == card2.noOfShapes), (card2.noOfShapes == card3.noOfShapes), (card1.noOfShapes == card3.noOfShapes))
-        let feat4 = boolFuncCheck((card1.shadingType == card2.shadingType), (card2.shadingType == card3.shadingType), (card1.shadingType == card3.shadingType))
+        let feat1 = boolFuncCheck(card1.color, card2.color, card3.color)
+        let feat2 = boolFuncCheck(card1.shapeType, card2.shapeType, card3.shapeType)
+        let feat3 = boolFuncCheck(card1.noOfShapes, card2.noOfShapes, card3.noOfShapes)
+        let feat4 = boolFuncCheck(card1.shadingType, card2.shadingType, card3.shadingType)
         printSetDetails(card1: card1, card2: card2, card3: card3, feat1: feat1, feat2:feat2, feat3: feat3, feat4: feat4)
         return (feat1 && feat2 && feat3 && feat4)
     }
@@ -45,14 +45,15 @@ struct Model{
                             cardsArray[firstIndex].isASet = true
                             cardsArray[secondIndex].isASet = true
                             dealMoreCards()
-//                            if let toBeDealt = cardsToBeDealt{
-//                                cardsArray.remove(at: selectedIndex)
-//                                cardsArray.remove(at: firstIndex)
-//                                cardsArray.remove(at: secondIndex)
-////                                cardsArray.insert(toBeDealt[0], at: selectedIndex)
-////                                cardsArray.insert(toBeDealt[1], at: firstIndex)
-////                                cardsArray.insert(toBeDealt[2], at: secondIndex)
-//                            }
+                            if let toBeDealt = cardsToBeDealt{
+                                cardsArray.remove(at: selectedIndex)
+                                cardsArray.insert(toBeDealt[0], at: selectedIndex)
+                                cardsArray.remove(at: firstIndex)
+                                cardsArray.insert(toBeDealt[1], at: firstIndex)
+                                cardsArray.remove(at: secondIndex)
+                                cardsArray.insert(toBeDealt[2], at: secondIndex)
+    
+                            }
                         }else{
                             cardsArray[firstIndex].isSelected = false
                             cardsArray[secondIndex].isSelected = false
@@ -70,10 +71,13 @@ struct Model{
             //CARD IS DESELECTED
             }else{
                 cardsArray[selectedIndex].isSelected = false
-                if indexOfFirstChosenCard != nil{
+                if selectedIndex == indexOfFirstChosenCard{
                     if indexOfSecondChosenCard != nil{
+                        indexOfFirstChosenCard = indexOfSecondChosenCard
                         indexOfSecondChosenCard = nil
                     }
+                    indexOfFirstChosenCard = nil
+                }else{
                     indexOfFirstChosenCard = nil
                 }
             }
@@ -85,8 +89,8 @@ struct Model{
     }
     
     //MARK: - helper functions
-    func boolFuncCheck(_ a: Bool, _ b: Bool, _ c: Bool) -> Bool{
-        return (a && b && c) || (!a && !b && !c)
+    func boolFuncCheck<cardProperty: Equatable>(_ a: cardProperty, _ b: cardProperty, _ c: cardProperty) -> Bool{
+        return ((a == b) && (b == c) && (c == a)) || ((a != b) && (b != c) && (c != a))
     }
     
     func isDeckEmpty() -> Bool{
