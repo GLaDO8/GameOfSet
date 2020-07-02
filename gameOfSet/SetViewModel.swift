@@ -19,15 +19,15 @@ class SetGameVM:ObservableObject{
 
     //MARK: - Functions
     static func pickInitCards() -> Array<Model.Card>{
-//        SetGameVM.completeCardSet.shuffle()
+        SetGameVM.completeCardSet.shuffle()
         return Array(SetGameVM.completeCardSet[0..<12])
     }
     static func createCompleteSet() -> Array<Model.Card>{
         var tempArray = Array<Model.Card>()
         let colorArray = [Color.green, Color.blue, Color.pink]
-        let shapeArray = [Model.CardShape.diamond, Model.CardShape.oval, Model.CardShape.rectangle]
+        let shapeArray = [Model.CardShape.diamond, Model.CardShape.squiggle, Model.CardShape.rectangle]
         let noOFShapeArray = [1, 2, 3]
-        let shadingArray = [0, 0.2, 1]
+        let shadingArray = [Model.CardFill.empty, Model.CardFill.pattern, Model.CardFill.filled]
         for colorIndex in 0..<colorArray.count{
             for shapeIndex in 0..<shapeArray.count{
                 for shadeIndex in 0..<shadingArray.count{

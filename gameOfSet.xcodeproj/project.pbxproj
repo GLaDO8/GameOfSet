@@ -20,6 +20,8 @@
 		38BBD5C6249228F10080E5FD /* SetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5C5249228F10080E5FD /* SetViewModel.swift */; };
 		38BBD5CA2492387C0080E5FD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5C92492387C0080E5FD /* Grid.swift */; };
 		38BBD5CC2492388C0080E5FD /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BBD5CB2492388C0080E5FD /* GridLayout.swift */; };
+		38C2FE7524AE3EAC00F51FEE /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2FE7424AE3EAC00F51FEE /* Squiggle.swift */; };
+		38C2FE7724AE663400F51FEE /* StripePattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2FE7624AE663400F51FEE /* StripePattern.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		38BBD5C5249228F10080E5FD /* SetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewModel.swift; sourceTree = "<group>"; };
 		38BBD5C92492387C0080E5FD /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		38BBD5CB2492388C0080E5FD /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		38C2FE7424AE3EAC00F51FEE /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
+		38C2FE7624AE663400F51FEE /* StripePattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripePattern.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				38BBD5AF24916AFD0080E5FD /* SetGameView.swift */,
 				382AAEE324948BB400C7EF8A /* AddShape.swift */,
 				38996EBE249743D100590701 /* Diamond.swift */,
+				38C2FE7424AE3EAC00F51FEE /* Squiggle.swift */,
+				38C2FE7624AE663400F51FEE /* StripePattern.swift */,
 				38BBD5AB24916AFD0080E5FD /* AppDelegate.swift */,
 				38BBD5AD24916AFD0080E5FD /* SceneDelegate.swift */,
 				38BBD5C92492387C0080E5FD /* Grid.swift */,
@@ -123,7 +129,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "shreyas gupta";
 				TargetAttributes = {
 					38BBD5A724916AFD0080E5FD = {
@@ -167,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C2FE7524AE3EAC00F51FEE /* Squiggle.swift in Sources */,
 				38BBD5C22491FC240080E5FD /* Array+firstIndex.swift in Sources */,
 				38BBD5AC24916AFD0080E5FD /* AppDelegate.swift in Sources */,
 				38BBD5CA2492387C0080E5FD /* Grid.swift in Sources */,
@@ -177,6 +184,7 @@
 				38BBD5C024916B4D0080E5FD /* SetModel.swift in Sources */,
 				38BBD5B024916AFD0080E5FD /* SetGameView.swift in Sources */,
 				38996EBF249743D100590701 /* Diamond.swift in Sources */,
+				38C2FE7724AE663400F51FEE /* StripePattern.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +228,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -280,6 +289,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

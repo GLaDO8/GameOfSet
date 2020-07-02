@@ -25,7 +25,7 @@ struct SetGameView: View {
                     Text("New Game")
                 }
             }
-            Grid(self.gameViewModel.cardsArr){ card in
+            Grid(self.gameViewModel.cardsArr ){ card in
                 CardView(card: card)
                     .transition(AnyTransition.offset(self.randomLocationGenerator()))
                     .animation(.default)
@@ -33,6 +33,10 @@ struct SetGameView: View {
                         withAnimation(.easeInOut){
                             self.gameViewModel.chooseCard(card: card)
                         }
+                }
+            }.onAppear{
+                withAnimation(.easeInOut){
+                    self.gameViewModel.newSetGame()
                 }
             }
             .padding(10)
@@ -46,6 +50,7 @@ struct SetGameView: View {
         }
     }
     
+    // TODO: improve random locations
     func randomLocationGenerator() -> CGSize{
         return CGSize(width: Int.random(in: -1000...1000), height: Int.random(in: -1000...2000))
     }
@@ -67,8 +72,8 @@ struct CardView: View{
                 Group{
                     if !card.isSelected{
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 2)
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 3)
                     }else{
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 4)
@@ -80,6 +85,7 @@ struct CardView: View{
             }
         }
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -87,18 +93,3 @@ struct ContentView_Previews: PreviewProvider {
         SetGameView(gameViewModel: SetGameVM())
     }
 }
-
-//
-//Grid(
-//    self.cardSetGame.gameHasStarted ? self.cardSetGame.dealtCards() : self.cardSetGame.emptyCardsArray()
-//) { card in
-//    GeometryReader { geometry in
-//        CardView(card: card, model: self.cardSetGame).position(x: geometry.size.width/2, y: geometry.size.height/2)
-//    }
-//    .transition(.offset(self.randomOffset))
-//}
-//.onAppear {
-//    withAnimation(.easeOut(duration: self.animationDuration))                {
-//        self.cardSetGame.resetGame()
-//    }
-//}

@@ -26,12 +26,10 @@ struct Model{
     }
     
     func checkIfCardsAreASet(card1: Card, card2: Card, card3: Card) -> Bool{
-        let feat1 = boolFuncCheck(card1.color, card2.color, card3.color)
-        let feat2 = boolFuncCheck(card1.shapeType, card2.shapeType, card3.shapeType)
-        let feat3 = boolFuncCheck(card1.noOfShapes, card2.noOfShapes, card3.noOfShapes)
-        let feat4 = boolFuncCheck(card1.shadingType, card2.shadingType, card3.shadingType)
-        printSetDetails(card1: card1, card2: card2, card3: card3, feat1: feat1, feat2:feat2, feat3: feat3, feat4: feat4)
-        return (feat1 && feat2 && feat3 && feat4)
+        return boolFuncCheck(card1.color, card2.color, card3.color)
+            && boolFuncCheck(card1.shapeType, card2.shapeType, card3.shapeType)
+            && boolFuncCheck(card1.noOfShapes, card2.noOfShapes, card3.noOfShapes)
+            && boolFuncCheck(card1.shadingType, card2.shadingType, card3.shadingType)
     }
 
     mutating func chooseCard(card: Card){
@@ -52,7 +50,6 @@ struct Model{
                                 cardsArray.insert(toBeDealt[1], at: firstIndex)
                                 cardsArray.remove(at: secondIndex)
                                 cardsArray.insert(toBeDealt[2], at: secondIndex)
-    
                             }
                         }else{
                             cardsArray[firstIndex].isSelected = false
@@ -106,19 +103,25 @@ struct Model{
     }
     
     enum CardShape{
-        case oval
+        case squiggle
         case diamond
         case rectangle
     }
+    
+    enum CardFill{
+        case empty
+        case pattern
+        case filled
+    }
+    
     struct Card: Identifiable{
         var id = UUID()
         var color: Color
         var shapeType: CardShape
         var noOfShapes: Int
-        var shadingType: Double
+        var shadingType: CardFill
         var isSelected: Bool = false
         var isASet: Bool = false
     }
-    
 }
 
