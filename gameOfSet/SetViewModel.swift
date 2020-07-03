@@ -45,13 +45,6 @@ class SetGameVM:ObservableObject{
         print(card.id)
     }
     
-    //MARK: - Access to model details
-    func getCards() -> Array<Model.Card>{
-        return setModel.cardsArray.filter{ element in
-            !element.isASet
-        }
-    }
-    
     //MARK: - Intents
     func chooseCard(card: Model.Card){
         return setModel.chooseCard(card: card)
@@ -64,8 +57,9 @@ class SetGameVM:ObservableObject{
     func isDeckEmpty() -> Bool{
         return setModel.isDeckEmpty()
     }
+    
     func DealMoreCards(){
-        
+        return setModel.dealCards()
     }
 
 }

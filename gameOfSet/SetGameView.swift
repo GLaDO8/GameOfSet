@@ -28,7 +28,7 @@ struct SetGameView: View {
             Grid(self.gameViewModel.cardsArr ){ card in
                 CardView(card: card)
                     .transition(AnyTransition.offset(self.randomLocationGenerator()))
-                    .animation(.default)
+                    .animation(.easeInOut(duration: 0.5))
                     .onTapGesture {
                         withAnimation(.easeInOut){
                             self.gameViewModel.chooseCard(card: card)
@@ -42,7 +42,7 @@ struct SetGameView: View {
             .padding(10)
             if !self.gameViewModel.isDeckEmpty(){
                 Button(action: {
-                    // TODO: write function for this
+                    self.gameViewModel.DealMoreCards()
                 }){
                     Text("Deal More Cards")
                 }
@@ -85,7 +85,6 @@ struct CardView: View{
             }
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
