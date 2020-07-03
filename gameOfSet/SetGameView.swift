@@ -25,18 +25,20 @@ struct SetGameView: View {
                     Text("New Game")
                 }
             }
-            Grid(self.gameViewModel.cardsArr ){ card in
-                CardView(card: card)
-                    .transition(AnyTransition.offset(self.randomLocationGenerator()))
-                    .animation(.easeInOut(duration: 0.5))
-                    .onTapGesture {
-                        withAnimation(.easeInOut){
-                            self.gameViewModel.chooseCard(card: card)
-                        }
-                }
-            }.onAppear{
-                withAnimation(.easeInOut){
-                    self.gameViewModel.newSetGame()
+            GeometryReader{ geometry in
+                Grid(self.gameViewModel.cardsArr ){ card in
+                    CardView(card: card)
+                        .transition(AnyTransition.offset(self.randomLocationGenerator(onCanvas: geometry.size)))
+                        .animation(.easeInOut(duration: 0.5))
+                        .onTapGesture {
+                            withAnimation(.easeInOut){
+                                self.gameViewModel.chooseCard(card: card)
+                            }
+                    }
+                }.onAppear{
+                    withAnimation(.easeInOut){
+                        self.gameViewModel.newSetGame()
+                    }
                 }
             }
             .padding(10)
@@ -50,9 +52,15 @@ struct SetGameView: View {
         }
     }
     
-    // TODO: improve random locations
-    func randomLocationGenerator() -> CGSize{
-        return CGSize(width: Int.random(in: -1000...1000), height: Int.random(in: -1000...2000))
+    func randomLocationGenerator(onCanvas size: CGSize) -> CGSize{
+        let widthRangeArr = [-Int(size.width*1.5) ..< -Int(size.width*1.25), Int(size.width*1.25) ..< Int(size.width*1.5)]
+        let heightRangeArr = [-Int(size.height*1.5) ..< -Int(size.height*1.25), Int(size.height*1.25) ..< Int(size.height*1.5)]
+        var rangeChooser:Int{
+            get{
+                Int.random(in: 0...1)
+            }
+        }
+        return CGSize(width: Int.random(in: widthRangeArr[rangeChooser]), height: Int.random(in: heightRangeArr[rangeChooser]))
     }
 }
 
