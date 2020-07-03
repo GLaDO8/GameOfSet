@@ -42,7 +42,7 @@ struct Model{
                             cardsArray[selectedIndex].isASet = true
                             cardsArray[firstIndex].isASet = true
                             cardsArray[secondIndex].isASet = true
-                            dealMoreCards()
+                            dealCardsStash()
                             if let toBeDealt = cardsToBeDealt{
                                 cardsArray.remove(at: selectedIndex)
                                 cardsArray.insert(toBeDealt[0], at: selectedIndex)
@@ -81,26 +81,17 @@ struct Model{
         }
     }
     
-    mutating func dealMoreCards(){
+    mutating func dealCardsStash(){
         cardsToBeDealt = Array(completeCardsArray[dealtCardsIndex+1...dealtCardsIndex+3])
     }
     
-    //MARK: - helper functions
-    func boolFuncCheck<cardProperty: Equatable>(_ a: cardProperty, _ b: cardProperty, _ c: cardProperty) -> Bool{
-        return ((a == b) && (b == c) && (c == a)) || ((a != b) && (b != c) && (c != a))
+    mutating func dealCards(){
+        dealCardsStash()
+        for index in 0..<cardsToBeDealt.count{
+           self.cardsArray.append(cardsToBeDealt[index])
+        }
     }
     
-    func isDeckEmpty() -> Bool{
-        return (dealtCardsIndex == 80)
-    }
-    
-    func printSetDetails(card1: Card, card2: Card, card3: Card, feat1: Bool, feat2: Bool, feat3: Bool, feat4: Bool){
-        print(feat1, feat2, feat3, feat4)
-        print("card1 details: \(card1.color), \(card1.shapeType), \(card1.noOfShapes), \(card1.shadingType)")
-        print("card2 details: \(card2.color), \(card2.shapeType), \(card2.noOfShapes), \(card2.shadingType)")
-        print("card3 details: \(card3.color), \(card3.shapeType), \(card3.noOfShapes), \(card3.shadingType)")
-        print()
-    }
     
     enum CardShape{
         case squiggle
@@ -122,6 +113,23 @@ struct Model{
         var shadingType: CardFill
         var isSelected: Bool = false
         var isASet: Bool = false
+    }
+    
+    //MARK: - helper functions
+    func boolFuncCheck<cardProperty: Equatable>(_ a: cardProperty, _ b: cardProperty, _ c: cardProperty) -> Bool{
+        return ((a == b) && (b == c) && (c == a)) || ((a != b) && (b != c) && (c != a))
+    }
+    
+    func isDeckEmpty() -> Bool{
+        return (dealtCardsIndex == 80)
+    }
+    
+    func printSetDetails(card1: Card, card2: Card, card3: Card, feat1: Bool, feat2: Bool, feat3: Bool, feat4: Bool){
+        print(feat1, feat2, feat3, feat4)
+        print("card1 details: \(card1.color), \(card1.shapeType), \(card1.noOfShapes), \(card1.shadingType)")
+        print("card2 details: \(card2.color), \(card2.shapeType), \(card2.noOfShapes), \(card2.shadingType)")
+        print("card3 details: \(card3.color), \(card3.shapeType), \(card3.noOfShapes), \(card3.shadingType)")
+        print()
     }
 }
 
