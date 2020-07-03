@@ -15,12 +15,12 @@ struct Diamond: Shape{
         let rightPoint = CGPoint(x: center.x+rect.width/2, y: center.y)
         let bottomPoint = CGPoint(x: center.x, y: ((center.y)+(rect.height)/2))
         let leftPoint = CGPoint(x: center.x-rect.width/2, y: center.y)
-        var p = Path()
-        p.move(to: startPoint)
-        p.addLine(to: rightPoint)
-        p.addLine(to: bottomPoint)
-        p.addLine(to: leftPoint)
-        p.addLine(to: startPoint)
-        return p
+        return Path{ path in
+            path.move(to: startPoint)
+            path.addLine(to: rightPoint)
+            path.addLine(to: bottomPoint)
+            path.addLine(to: leftPoint)
+            path.addLine(to: startPoint)
+        }
     }
 }
